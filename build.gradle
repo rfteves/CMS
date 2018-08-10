@@ -9,6 +9,7 @@ buildscript {
         classpath "gradle.plugin.com.energizedwork:idea-gradle-plugins:1.4"
         classpath "org.grails.plugins:hibernate5:${gormVersion-".RELEASE"}"
         classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.14.6"
+        classpath 'org.codenarc:CodeNarc:1.1'
     }
 }
 
@@ -23,6 +24,7 @@ apply plugin:"com.energizedwork.webdriver-binaries"
 apply plugin:"com.energizedwork.idea-project-components"
 apply plugin:"asset-pipeline"
 apply plugin:"org.grails.grails-gsp"
+apply plugin: "codenarc"
 
 repositories {
     mavenLocal()
@@ -65,6 +67,7 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-api:3.6.0"
 
     // New
+    compile 'org.grails.plugins:http-builder-helper:1.1.0'
     runtime 'org.grails.plugins:grails-console:2.1.1'
     compile 'mysql:mysql-connector-java:5.1.46'
 }
@@ -88,4 +91,15 @@ tasks.withType(Test) {
 assets {
     minifyJs = true
     minifyCss = true
+}
+
+codenarcMain {
+    configFile = file("$project.projectDir/src/codenarc/main.groovy")
+    ignoreFailures = false
+    excludes = ['**/Application.*', '**/BootStrap.*', '**/UrlMappings.*', '**/*GrailsPlugin.*']
+}
+
+codenarcTest {
+    configFile = file("$project.projectDir/src/codenarc/test.groovy")
+    ignoreFailures = false
 }
