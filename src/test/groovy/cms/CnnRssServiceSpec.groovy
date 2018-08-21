@@ -3,13 +3,13 @@ package cms
 import grails.testing.services.ServiceUnitTest
 import spock.lang.Specification
 
-class RSSServiceSpec extends Specification implements ServiceUnitTest<RSSService> {
+class CnnRssServiceSpec extends Specification implements ServiceUnitTest<CnnRssService> {
 
     void "test something"() {
         when:
-        def object = service.get().getClass()
+        def response = service.get()
 
         then:
-        object != null
+        response != null
     }
 }
