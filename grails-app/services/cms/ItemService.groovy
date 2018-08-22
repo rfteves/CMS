@@ -3,8 +3,8 @@ package cms
 import grails.gorm.transactions.Transactional
 
 @Transactional
-class ItemService<R extends Item> {
-    R makeRecord(R record) {
-        record.save(flush: true)
+class ItemService<T extends Item> {
+    T makeRecord(T record) {
+        record.save(flush: true, failOnError: true)
     }
 }

@@ -1,6 +1,6 @@
 package cms
 
-class Article  {
+class Article extends Item  {
 
     String source
 
@@ -17,7 +17,7 @@ class Article  {
     static constraints = {
         pubDate nullable: true
         processedDate nullable: true
-        description maxSize: 500, nullable: true
+        description maxSize: 600, nullable: true
     }
 
     static mapping = {

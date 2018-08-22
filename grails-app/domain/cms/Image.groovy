@@ -1,6 +1,6 @@
 package cms
 
-class Image {
+class Image extends Item {
 
     String url
     String medium

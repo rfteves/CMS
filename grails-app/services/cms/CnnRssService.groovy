@@ -23,7 +23,11 @@ class CnnRssService {
             def news = [:]
             news.images = []
             news.title = item.getChildText('title')
-            news.description = item.getChildText('description')
+            def description = item.getChildText('description')
+            if (!description?.startsWith('<') && description?.length() < 600) {
+                news.description = description
+            }
+
             news.link = item.getChildText('link')
             def pubDate = item.getChildText('pubDate')
             if (pubDate?.length() == 29) {
